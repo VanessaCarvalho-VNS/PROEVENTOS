@@ -35,6 +35,7 @@ namespace PROEVENTOS.API
 
             );
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PROEVENTOS.API", Version = "v1" });
@@ -56,6 +57,10 @@ namespace PROEVENTOS.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(x => x.AllowAnyHeader()
+                              .AllowAnyMethod()
+                              .AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {
